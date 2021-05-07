@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameEvents.Game;
 using MutableObjects.Float;
 using UnityEngine;
 
@@ -8,11 +9,12 @@ namespace Recorder
     
     public class Countdown : MonoBehaviour
     {
+        public GameEvent resetLevel;
+        
         public RecordingState recordingState = RecordingState.BREAK;
         public RecordingState recordingStateAfterBreak = RecordingState.RECORDING;
         public float recordingLength = 5f;
         public float breakLength = 3f;
-    
         public MutableFloat currentRecordingTime;
 
         void Update()
@@ -41,6 +43,7 @@ namespace Recorder
                         recordingState = RecordingState.BREAK;
                         recordingStateAfterBreak = RecordingState.RECORDING;
                         currentRecordingTime.Value = 0f;
+                        resetLevel.RaiseGameEvent();
                     }
                     break;
                 default:

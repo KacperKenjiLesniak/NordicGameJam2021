@@ -12,9 +12,12 @@ public class InputRecorder : MonoBehaviour
     public MutableFloat currentRecordingTime;
     public Countdown countdown;
 
+    private PlayerMovement playerMovement;
+    
     private void Awake()
     {
         countdown = FindObjectOfType<Countdown>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     void Update()
@@ -30,7 +33,33 @@ public class InputRecorder : MonoBehaviour
         if (inputQueue.Count > 0 && currentRecordingTime.Value >= inputQueue.Peek().timestamp)
         {
             var timedInput = inputQueue.Dequeue();
-            Debug.Log(timedInput.input + " " + timedInput.timestamp);
+            switch (timedInput.input)
+            {
+                case InputType.JUMP:
+                    playerMovement.Jump();
+                    break;
+                case InputType.RUN_LEFT_START:
+                    playerMovement.MoveLeft();
+                    break;
+                case InputType.RUN_LEFT_STOP:
+                    playerMovement.StopMovement();
+                    break;
+                case InputType.RUN_RIGHT_START:
+                    playerMovement.MoveRight();
+                    break;
+                case InputType.RUN_RIGHT_STOP:
+                    playerMovement.StopMovement();
+                    break;
+                case InputType.WEAPON:
+                    playerMovement.ImplementWeapon();
+                    break;
+                case InputType.INTERACT:
+                    playerMovement.Interact();
+                    break;
+                case InputType.BOOST:
+                    playerMovement.BoostSpeed();
+                    break;
+            }
         }
     }
 
@@ -41,6 +70,4 @@ public class InputRecorder : MonoBehaviour
             inputQueue.Enqueue(new TimedInput(currentRecordingTime.Value, input));
         }
     }
-    
-
 }
