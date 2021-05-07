@@ -2,7 +2,7 @@
 
 namespace Recorder
 {
-    public class TimedInput : MonoBehaviour
+    public class TimedInput
     {
         public float timestamp;
         public InputType input;

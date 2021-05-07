@@ -1,36 +1,46 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using MutableObjects.Float;
 using Recorder;
 using UnityEngine;
 
 public class InputRecorder : MonoBehaviour
 {
+    public Queue<TimedInput> inputQueue = new Queue<TimedInput>();
+    
+    public MutableFloat currentRecordingTime;
+    public Countdown countdown;
 
-    
-    public bool recording = true;
-    public float recordingLength = 5f;
-    public Queue<TimedInput> timedInput = new Queue<TimedInput>();
-    public float currentRecordingTime = 0f;
-    
-    void Start()
+    private void Awake()
     {
-        InvokeRepeating(nameof(SwitchRecording), 0f, recordingLength);
+        countdown = FindObjectOfType<Countdown>();
     }
 
     void Update()
     {
-        currentRecordingTime += Time.deltaTime;
-        
+        if (countdown.recordingState == RecordingState.PLAYING)
+        {
+            HandleReplay();
+        }
     }
 
-    public void AddInput(TimedInput input)
+    private void HandleReplay()
     {
-        timedInput.Enqueue(input);
+        if (inputQueue.Count > 0 && currentRecordingTime.Value >= inputQueue.Peek().timestamp)
+        {
+            var timedInput = inputQueue.Dequeue();
+            Debug.Log(timedInput.input + " " + timedInput.timestamp);
+        }
+    }
+
+    public void AddInput(InputType input)
+    {
+        if (countdown.recordingState == RecordingState.RECORDING)
+        {
+            inputQueue.Enqueue(new TimedInput(currentRecordingTime.Value, input));
+        }
     }
     
-    public void SwitchRecording()
-    {
-        recording = !recording;
-        currentRecordingTime = 0f;
-    }
+
 }
