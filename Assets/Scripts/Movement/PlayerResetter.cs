@@ -9,6 +9,7 @@ namespace DefaultNamespace.Movement
     {
         public GameEvent resetLevel;
         public Vector3 startingPosition;
+        public Quaternion startingRotation;
 
         private void Awake()
         {
@@ -18,11 +19,13 @@ namespace DefaultNamespace.Movement
         private void Start()
         {
             startingPosition = transform.position;
+            startingRotation = transform.rotation;
         }
 
         public void RaiseGameEvent()
         {
             transform.position = startingPosition;
+            transform.rotation = startingRotation;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             GetComponent<Rigidbody2D>().angularVelocity = 0f;
             GetComponent<PlayerMovement>().StopMovement();
