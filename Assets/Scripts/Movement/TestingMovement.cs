@@ -6,16 +6,18 @@ public class TestingMovement : MonoBehaviour
 {
 
     [SerializeField] private string upKey, leftKey, rightKey, weaponKey, interactKey, boostKey;
-    [SerializeField] private float speed, jumpingSpeed,boostSpeed;
+    [SerializeField] private float speed, jumpingSpeed,boostSpeed, distToGround;
     [SerializeField] private int mines, boosts;
     [SerializeField] GameObject mine;
     private Rigidbody2D playerRB;
+    private Animator animator;
     private float movementTimer, lastMovementTime, timeLeftBoost;
-    private bool isMoving, left;
+    [SerializeField] private bool isMoving, left,isJumping;
     // Start is called before the first frame update
     void Start()
     {
         playerRB = this.GetComponent<Rigidbody2D>();
+        animator = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -61,19 +63,21 @@ public class TestingMovement : MonoBehaviour
             BoostSpeed();
         }
 
+        float v = Mathf.Abs(playerRB.velocity.x);
+        animator.SetFloat("Speed", v);
         if (isMoving)
         {
-            if (Mathf.Abs(playerRB.velocity.x) > speed)
+            if (v > speed)
             {
-                Move(Mathf.Abs(playerRB.velocity.x));
+                Move(v);
             }
             else
             {
                 Move(speed);
             }
-            movementTimer += Time.deltaTime;
-            
+
         }
+        
     }
 
     public void StopMovement()
@@ -97,8 +101,20 @@ public class TestingMovement : MonoBehaviour
 
     public void Jump()
     {
-        playerRB.velocity = new Vector2(playerRB.velocity.x, jumpingSpeed);
+        if (IsGrounded())
+        {
+            playerRB.velocity = new Vector2(playerRB.velocity.x, jumpingSpeed);
+            animator.SetTrigger("Jump");
+        }
     }
+
+    bool IsGrounded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Killer")) return false;
+        return hit;
+    }
+
 
     public void Move(float currentSpeed)
     {
