@@ -76,4 +76,3 @@ public class ObstacleMovement : MonoBehaviour
         endPos = new Vector3(transform.position.x + x, transform.position.y + y);
     }
 }
-}

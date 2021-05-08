@@ -649,15 +649,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1789158868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6fe17759eb94144592d1b0facd3fdcd, type: 3}
+  m_Script: {fileID: 11500000, guid: a61db0285eb990e448aa908246decbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anchor: l
-  radius: 5
-  speed: 1
+  radius: 3
+  speed: 3
   isMoving: 1
-  isHorizontal: 0
-  firstTime: 0
+  isHorizontal: 1
+  isCenterrd: 1
 --- !u!212 &1789158870
 SpriteRenderer:
   m_ObjectHideFlags: 0
