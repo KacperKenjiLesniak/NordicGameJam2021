@@ -8,38 +8,38 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int mines, boosts;
     [SerializeField] GameObject mine;
     private Rigidbody2D playerRB;
-    private float movementTimer, lastMovementTime;
+    private Animator animator;
     private bool isMoving,left;
     
     // Start is called before the first frame update
     void Start()
     {
         playerRB = this.GetComponent<Rigidbody2D>();
+        animator = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        float v = Mathf.Abs(playerRB.velocity.x);
+        animator.SetFloat("Speed", v);
         if (isMoving)
         {
-            movementTimer += Time.deltaTime;
-            if (Mathf.Abs(playerRB.velocity.x) > speed)
+            if (v > speed)
             {
-                Move(Mathf.Abs(playerRB.velocity.x));
+                Move(v);
             }
             else
             {
                 Move(speed);
             }
-            
+           
         }
     }
 
     public void StopMovement()
-    {
+    {       
         isMoving = false;
-        lastMovementTime = movementTimer;
-        movementTimer = 0.0f;
     }
 
     public void MoveRight()
@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded())
         {
             playerRB.velocity = new Vector2(playerRB.velocity.x,jumpingSpeed);
+            animator.SetTrigger("Jump");
         }
     }
 
@@ -70,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         return hit;
     }
     
+
     public void Move(float currentSpeed)
     {
         float x = 0.0f;
