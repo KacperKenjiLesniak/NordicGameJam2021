@@ -1,28 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Recorder;
 using UnityEngine;
 
 public class ObstacleMovement : MonoBehaviour
 {
     [SerializeField] private float radius, speed;
     [SerializeField] private bool isMoving, isHorizontal, isCenterrd;
+    public Countdown countdown;
     private bool firstTime;
-    private Vector3 startPos, endPos;
+    private Vector3 startPos, endPos, resetPos;
     // Start is called before the first frame update
     void Start()
     {
+        countdown = FindObjectOfType<Countdown>();
+        resetPos = transform.position;
         firstTime = true;
         startPos = new Vector3(transform.position.x, transform.position.y);
         if (isCenterrd == false)
         {
             if (isHorizontal)
             {
-                setMovement(0, radius);
+                setMovement(radius, 0);
             }
 
             else
             {
-                setMovement(radius, 0);
+                setMovement(0, radius);
             }
         }
         else
@@ -34,6 +38,8 @@ public class ObstacleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        resetPosition();
         if (isMoving)
         {
             if (firstTime)
@@ -69,6 +75,20 @@ public class ObstacleMovement : MonoBehaviour
             endPos = new Vector3(transform.position.x, transform.position.y - radius);
         }
 
+    }
+
+
+    void resetPosition()
+    {
+        if (countdown.recordingState == RecordingState.BREAK)
+        {
+            transform.position = resetPos;
+            isMoving = false;
+        }
+        else
+        {
+            isMoving = true;
+        }
     }
 
     void setMovement(float x, float y)
