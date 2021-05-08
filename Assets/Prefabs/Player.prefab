@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: 697475811}
   - component: {fileID: 102519817}
   - component: {fileID: 8496506745431195229}
+  - component: {fileID: 4975761903909307225}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player1
@@ -605,6 +606,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playersAlive: {fileID: 11400000, guid: 3f7a0899edbc9d14bb3e09c4670a0fbe, type: 2}
   bloodSplash: {fileID: 3450729324962875654, guid: eb8ad3202b4b7a44caa29307de5a3dbb, type: 3}
+--- !u!114 &4975761903909307225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6245785087625575767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217db87b9c744a219977c63e95fa5315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playersAlive: {fileID: 11400000, guid: 3f7a0899edbc9d14bb3e09c4670a0fbe, type: 2}
+  effect: {fileID: 3450729324962875654, guid: 4c94db246546e7345ba105b3fe37c46c, type: 3}
 --- !u!1 &8365543246069424912
 GameObject:
   m_ObjectHideFlags: 0
