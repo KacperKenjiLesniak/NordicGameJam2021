@@ -49,3 +49,4 @@ MonoBehaviour:
   recordingLength: 10
   breakLength: 3
   currentRecordingTime: {fileID: 11400000, guid: 92a892e511d07ad40b4139850e0720a3, type: 2}
+  playersAlive: {fileID: 11400000, guid: 3f7a0899edbc9d14bb3e09c4670a0fbe, type: 2}

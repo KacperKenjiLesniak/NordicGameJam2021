@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GameEvents.Game;
 using MutableObjects.Float;
+using MutableObjects.Int;
 using UnityEngine;
 
 namespace Recorder
@@ -16,6 +17,12 @@ namespace Recorder
         public float recordingLength = 5f;
         public float breakLength = 3f;
         public MutableFloat currentRecordingTime;
+        public MutableInt playersAlive;
+
+        private void Start()
+        {
+            playersAlive.Value = FindObjectsOfType<PlayerMovement>().Length;
+        }
 
         void Update()
         {
@@ -23,31 +30,52 @@ namespace Recorder
             switch (recordingState)
             {
                 case RecordingState.RECORDING:
-                    if (currentRecordingTime.Value >= recordingLength)
-                    {
-                        recordingState = RecordingState.BREAK;
-                        recordingStateAfterBreak = RecordingState.PLAYING;
-                        currentRecordingTime.Value = 0f;
-                    }
+                    HandleRecordingState();
                     break;
                 case RecordingState.BREAK:
-                    if (currentRecordingTime.Value >= breakLength)
-                    {
-                        recordingState = recordingStateAfterBreak;
-                        currentRecordingTime.Value = 0f;
-                    }
+                    HandleBreakState();
                     break;
                 case RecordingState.PLAYING:
-                    if (currentRecordingTime.Value >= recordingLength)
-                    {
-                        recordingState = RecordingState.BREAK;
-                        recordingStateAfterBreak = RecordingState.RECORDING;
-                        currentRecordingTime.Value = 0f;
-                        resetLevel.RaiseGameEvent();
-                    }
+                    HandlePlayingState();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void HandleRecordingState()
+        {
+            if (currentRecordingTime.Value >= recordingLength)
+            {
+                recordingState = RecordingState.BREAK;
+                recordingStateAfterBreak = RecordingState.PLAYING;
+                currentRecordingTime.Value = 0f;
+            }
+        }
+
+        private void HandleBreakState()
+        {
+            if (currentRecordingTime.Value >= breakLength)
+            {
+                recordingState = recordingStateAfterBreak;
+                currentRecordingTime.Value = 0f;
+            }
+        }
+
+        private void HandlePlayingState()
+        {
+            if (playersAlive.Value == 0)
+            {
+                currentRecordingTime.Value = recordingLength;
+            }
+
+            if (currentRecordingTime.Value >= recordingLength)
+            {
+                recordingState = RecordingState.BREAK;
+                recordingStateAfterBreak = RecordingState.RECORDING;
+                currentRecordingTime.Value = 0f;
+                playersAlive.Value = FindObjectsOfType<PlayerMovement>().Length;
+                resetLevel.RaiseGameEvent();
             }
         }
     }

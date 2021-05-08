@@ -29,6 +29,8 @@ namespace DefaultNamespace.Movement
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             GetComponent<Rigidbody2D>().angularVelocity = 0f;
             GetComponent<PlayerMovement>().StopMovement();
+            GetComponent<Collider2D>().enabled = true;
+            GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 }
