@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2296941628387589629
+--- !u!1 &7344690961893017911
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,36 +8,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5235460328496168614}
-  - component: {fileID: 528210222274852836}
+  - component: {fileID: 8655980987612024545}
+  - component: {fileID: 4931058364431344831}
   m_Layer: 0
-  m_Name: Hole
+  m_Name: Hole (1)
   m_TagString: Killer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5235460328496168614
+--- !u!4 &8655980987612024545
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2296941628387589629}
+  m_GameObject: {fileID: 7344690961893017911}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.56, y: -3.58, z: 5.436413}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.6312506, y: -3.4397924, z: 23.98456}
+  m_LocalScale: {x: 34.87164, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7793437022936015380}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &528210222274852836
+--- !u!61 &4931058364431344831
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2296941628387589629}
+  m_GameObject: {fileID: 7344690961893017911}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -91,7 +91,7 @@ Transform:
   - {fileID: 7793437021964315954}
   - {fileID: 4458821152311436745}
   - {fileID: 116807562845138685}
-  - {fileID: 5235460328496168614}
+  - {fileID: 8655980987612024545}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

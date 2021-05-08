@@ -10,13 +10,22 @@ namespace LevelFlow
     {
         public int[] playerPoints = {0, 0};
         public int maxPoints;
-        public Countdown countdown;
+        public MutableInt currentLevel;
+        public GameObject[] levels;
         
+        private Countdown countdown;
+
         private void Awake()
         {
             countdown = FindObjectOfType<Countdown>();
         }
-        
+
+        private void Start()
+        {
+            Array.ForEach(levels, level => level.SetActive(false));
+            levels[currentLevel.Value].SetActive(true);
+        }
+
         public void AddPoint(int amount, int player)
         {
             playerPoints[player] += amount;

@@ -1,5 +1,6 @@
 ﻿using System;
 using DefaultNamespace;
+using DefaultNamespace.Movement;
 using MutableObjects.Int;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace LevelFlow
             if (other.gameObject.CompareTag(playerTag))
             {
                 playerScore.Value += 1;
+                other.GetComponent<PlayerWin>().WinEffect();
                 enabled = false;
             }
         }
