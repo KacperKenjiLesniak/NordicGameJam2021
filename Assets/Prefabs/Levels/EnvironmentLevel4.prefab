@@ -667,6 +667,10 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4679921458050888916, guid: 2ee4fbb80a2eb26498005ee10cbadcf4, type: 3}
+      propertyPath: radius
+      value: -3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679921458050888916, guid: 2ee4fbb80a2eb26498005ee10cbadcf4, type: 3}
       propertyPath: isHorizontal
       value: 1
       objectReference: {fileID: 0}
