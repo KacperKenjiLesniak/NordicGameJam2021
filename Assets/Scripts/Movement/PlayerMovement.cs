@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
     bool IsGrounded()
     {
         RaycastHit2D hit =  Physics2D.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Killer")) return false;
         return hit;
     }
     
