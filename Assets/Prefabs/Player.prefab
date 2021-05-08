@@ -135,6 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpingSpeed: 5
+  distToGround: 2
+  mine: {fileID: 6410561870728186928, guid: 965f6ea0c1c94cc4e8fbe1a98dba7ddd, type: 3}
 --- !u!50 &6245785087625575722
 Rigidbody2D:
   serializedVersion: 4
@@ -196,3 +198,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetLevel: {fileID: 11400000, guid: 65c3c524a27a5d34098eccf58ba5c395, type: 2}
   startingPosition: {x: 0, y: 0, z: 0}
+  startingRotation: {x: 0, y: 0, z: 0, w: 0}

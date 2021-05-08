@@ -466,23 +466,11 @@ MonoBehaviour:
   upKey: w
   leftKey: a
   rightKey: d
-  weaponKey: e
-  interactKey: r
-  boostKey: t
+  weaponKey: g
+  interactKey: h
+  boostKey: j
   speed: 10
   jumpingSpeed: 10
---- !u!114 &1183136549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1183136547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6ee3a8011201ff438bef9fb6f97f12b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   mine: {fileID: 6410561870728186928, guid: 965f6ea0c1c94cc4e8fbe1a98dba7ddd, type: 3}
 --- !u!1 &1708436732
 GameObject:

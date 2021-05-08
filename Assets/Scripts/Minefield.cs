@@ -9,7 +9,7 @@ public class Minefield : MonoBehaviour
     private GameObject[] mines;
     private Rigidbody2D[] minesRb;
     [SerializeField] private float explosionPower, explosionRadius, uplift;
-    [SerializeField] private int Lives;
+    [SerializeField] private int Lives,players;
 
 
     // Start is called before the first frame update
@@ -17,13 +17,11 @@ public class Minefield : MonoBehaviour
     {
         isPlaced = false;
         player1Rb = GameObject.FindGameObjectWithTag("Player1").GetComponent<Rigidbody2D>();
-        //player2Rb = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody2D>();
-        mines = GameObject.FindGameObjectsWithTag("minebody");
-        minesRb = new Rigidbody2D[mines.Length];
-        for (int i = 0; i < mines.Length; i++)
+        if (players == 2)
         {
-            minesRb[i] = mines[i].GetComponent<Rigidbody2D>();
+            player2Rb = GameObject.FindGameObjectWithTag("Player2").GetComponent<Rigidbody2D>();
         }
+
 
     }
 
@@ -40,7 +38,6 @@ public class Minefield : MonoBehaviour
         {
             if (isActivated)
             {
-                Debug.Log("explosion");
                 explode();
             }
         }
@@ -59,11 +56,16 @@ public class Minefield : MonoBehaviour
 
     void explode()
     {
+        mines = GameObject.FindGameObjectsWithTag("minebody");
         Vector3 explosionCore = new Vector3(transform.position.x, transform.position.y - 0.5f);
         Rigidbody2DExtension.AddExplosionForce(player1Rb, explosionPower, explosionCore, explosionRadius, uplift);
-        //Rigidbody2DExtension.AddExplosionForce(player2Rb, explosionPower, explosionCore, explosionRadius, uplift);
-        foreach (Rigidbody2D r in minesRb)
+        if (players == 2)
         {
+            Rigidbody2DExtension.AddExplosionForce(player2Rb, explosionPower, explosionCore, explosionRadius, uplift);
+        }
+        for (int i = 0; i < mines.Length; i++)
+        {
+            Rigidbody2D r = mines[i].GetComponent<Rigidbody2D>();
             Rigidbody2DExtension.AddExplosionForce(r, explosionPower, explosionCore, explosionRadius, uplift);
         }
         checkLives();

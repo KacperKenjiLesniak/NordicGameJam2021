@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed, jumpingSpeed, distToGround = 2f;
+    [SerializeField] GameObject mine;
     private Rigidbody2D playerRB;
     private float movementTimer,lastMovementTime;
     private bool isMoving,left;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -74,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void ImplementWeapon()
     {
-
+            Instantiate(mine, this.transform.position, Quaternion.identity);
     }
 
     public void Interact()

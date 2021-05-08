@@ -7,6 +7,7 @@ public class TestingMovement : MonoBehaviour
 
     [SerializeField] private string upKey, leftKey, rightKey, weaponKey, interactKey, boostKey;
     [SerializeField] private float speed, jumpingSpeed;
+    [SerializeField] GameObject mine;
     private Rigidbody2D playerRB;
     private float movementTimer, lastMovementTime;
     private bool isMoving, left;
@@ -87,7 +88,6 @@ public class TestingMovement : MonoBehaviour
 
     public void Jump()
     {
-        Debug.Log("Jumping!");
         playerRB.velocity = new Vector2(playerRB.velocity.x, jumpingSpeed);
     }
 
@@ -107,7 +107,7 @@ public class TestingMovement : MonoBehaviour
 
     public void ImplementWeapon()
     {
-
+        Instantiate(mine, this.transform.position, Quaternion.identity);
     }
 
     public void Interact()
