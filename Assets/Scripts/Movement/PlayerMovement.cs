@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed, jumpingSpeed, distToGround = 2f;
+    [SerializeField] private float speed, jumpingSpeed, distToGround = 2f,boostSpeed;
+    [SerializeField] private int mines, boosts;
     [SerializeField] GameObject mine;
     private Rigidbody2D playerRB;
-    private float movementTimer,lastMovementTime;
+    private float movementTimer, lastMovementTime;
     private bool isMoving,left;
     
     // Start is called before the first frame update
@@ -22,7 +23,15 @@ public class PlayerMovement : MonoBehaviour
         if (isMoving)
         {
             movementTimer += Time.deltaTime;
-            Move();
+            if (Mathf.Abs(playerRB.velocity.x) > speed)
+            {
+                Move(Mathf.Abs(playerRB.velocity.x));
+            }
+            else
+            {
+                Move(speed);
+            }
+            
         }
     }
 
@@ -60,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         return hit;
     }
     
-    public void Move()
+    public void Move(float currentSpeed)
     {
         float x = 0.0f;
         if (left)
@@ -71,12 +80,21 @@ public class PlayerMovement : MonoBehaviour
         {
             x = 1.0f;
         }
-        playerRB.velocity = new Vector2(x * speed, playerRB.velocity.y);
+        playerRB.velocity = new Vector2(x * currentSpeed, playerRB.velocity.y);
     }
 
     public void ImplementWeapon()
     {
+        if (mines > 0)
+        {
             Instantiate(mine, this.transform.position, Quaternion.identity);
+            mines -= 1;
+        }
+
+        else
+        {
+            //add empty feedback
+        }
     }
 
     public void Interact()
@@ -86,6 +104,23 @@ public class PlayerMovement : MonoBehaviour
 
     public void BoostSpeed()
     {
+        if (boosts > 0)
+        {
+            if (playerRB.velocity.x > 0.0f)
+            {
+                playerRB.AddForce(Vector2.right * boostSpeed, ForceMode2D.Impulse);
+            }
+            else if (playerRB.velocity.x < 0.0f)
+            {
+                playerRB.AddForce(Vector2.left * boostSpeed, ForceMode2D.Impulse); ;
+            }
 
+            boosts -= 1;
+        }
+
+        else
+        {
+            //add empty feedback
+        }
     }
 }
