@@ -18,7 +18,7 @@ namespace UI
 
         private void Update()
         {
-            text.text = "Score: " + playerScore.Value;
+            text.text = "" + playerScore.Value;
         }
     }
 }

@@ -7,8 +7,11 @@ using TMPro;
 
 public class InputFeedback : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer up,left,right,mine;
+    [SerializeField] private SpriteRenderer up, left, right, mine;
     [SerializeField] Color normal, pressed, disabled;
+    public int minesLeft;
+    private bool isRecording, movingLeft;
+
     public Countdown countdown;
     private bool animate;
     // Start is called before the first frame update
@@ -34,25 +37,30 @@ public class InputFeedback : MonoBehaviour
 
     public void ShowFeedback(string actionName)
     {
-        if (animate)
+        if (!animate)
         {
             if (actionName == "Left")
             {
-                StartCoroutine(FadeToRed(left));
+                left.color = pressed;
+                movingLeft = true;
             }
+
             if (actionName == "Right")
             {
-                StartCoroutine(FadeToRed(right));
+                right.color = pressed;
+                movingLeft = false;
             }
+
             if (actionName == "Jump")
             {
-                StartCoroutine(FadeToRed(up));
+                up.color = pressed;
                 StartCoroutine(FadeToGreen(up));
             }
+
             if (actionName == "Dropped mine")
             {
-                StartCoroutine(FadeToRed(mine));
-                if (this.gameObject.GetComponent<PlayerMovement>().mines == 0)
+                mine.color = pressed;
+                if (minesLeft == 0)
                 {
                     StartCoroutine(FadeToGrey(mine));
                 }
@@ -61,48 +69,25 @@ public class InputFeedback : MonoBehaviour
                     StartCoroutine(FadeToGreen(mine));
                 }
             }
-            if (actionName == "Stop left")
+
+            if (actionName.Contains("Stop"))
             {
-                StartCoroutine(FadeToGreen(left));
-            }
-            if (actionName == "Stop right")
-            {
-                StartCoroutine(FadeToGreen(right));
+                Debug.Log("Color back to normal");
+                left.color = normal;
+                right.color = normal;
             }
         }
-       
     }
 
     IEnumerator FadeToGrey(SpriteRenderer rd)
     {
-        yield return new WaitForSeconds(0.3f);
-        // loop over 1 second backwards
-        for (float i = 1; i >= 0; i -= Time.deltaTime)
-        {
-            // set color with i as alpha
-            rd.color = Color.Lerp(rd.color, disabled, i);
-            yield return null;
-        }
+        yield return new WaitForSeconds(.3f);
+        rd.color = disabled;
     }
 
-    IEnumerator FadeToRed(SpriteRenderer rd)
-    {
-        // loop over 1 second backwards
-        for (float i = 0.5f; i >= 0; i -= Time.deltaTime)
-        {
-            // set color with i as alpha
-            rd.color = Color.Lerp(rd.color, pressed, i*2);
-            yield return null;
-        }
-    }
     IEnumerator FadeToGreen(SpriteRenderer rd)
     {
-        yield return new WaitForSeconds(0.5f);
-        for (float i = 1; i >= 0; i -= Time.deltaTime)
-        {
-            // set color with i as alpha
-            rd.color = Color.Lerp(rd.color, normal, i);
-            yield return null;
-        }
+        yield return new WaitForSeconds(.3f);
+        rd.color = normal;
     }
 }
