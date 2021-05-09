@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace.Audio;
 using MutableObjects.Float;
 using Recorder;
 using UnityEngine;
@@ -13,11 +14,13 @@ public class InputRecorder : MonoBehaviour
     public Countdown countdown;
 
     private PlayerMovement playerMovement;
-    
+    private AudioManager audioManager;
+
     private void Awake()
     {
         countdown = FindObjectOfType<Countdown>();
         playerMovement = GetComponent<PlayerMovement>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void Update()
@@ -37,6 +40,7 @@ public class InputRecorder : MonoBehaviour
             {
                 case InputType.JUMP:
                     playerMovement.Jump();
+                    audioManager.PlayClip(2);
                     break;
                 case InputType.RUN_LEFT_START:
                     playerMovement.MoveLeft();
@@ -68,6 +72,10 @@ public class InputRecorder : MonoBehaviour
         if (countdown.recordingState == RecordingState.RECORDING)
         {
             Debug.Log("Enqueued " + input);
+            if (input == InputType.JUMP)
+            {
+                audioManager.PlayClip(2);
+            }
             inputQueue.Enqueue(new TimedInput(currentRecordingTime.Value, input));
         }
         else if (countdown.recordingState == RecordingState.BREAK &&
