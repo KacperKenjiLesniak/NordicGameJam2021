@@ -8,7 +8,7 @@ namespace DefaultNamespace.Audio
         
         private AudioSource[] sources;
 
-        private void Start()
+        private void Awake()
         {
             sources = GetComponentsInChildren<AudioSource>();
         }
