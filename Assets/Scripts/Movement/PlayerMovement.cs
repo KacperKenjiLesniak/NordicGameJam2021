@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed, jumpingSpeed, distToGround = 2f,boostSpeed;
-    [SerializeField] private int mines, boosts;
+    [SerializeField] private int boosts;
+    public int mines;
     [SerializeField] GameObject mine;
     private Rigidbody2D playerRB;
     private Animator animator;

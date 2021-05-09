@@ -9,9 +9,8 @@ public class InputFeedback : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer up,left,right,mine;
     [SerializeField] Color normal, pressed, disabled;
-    public int minesLeft;
-    private bool isRecording, movingLeft;
     public Countdown countdown;
+    private bool animate;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,64 +23,64 @@ public class InputFeedback : MonoBehaviour
         if (countdown.recordingState == RecordingState.PLAYING || countdown.recordingState == RecordingState.RECORDING)
         {
 
-
+            animate = true;
         }
 
         if (countdown.recordingState == RecordingState.RECORDING)
         {
-
+            animate = false;
         }
     }
 
     public void ShowFeedback(string actionName)
     {
-        if (actionName == "Left")
+        if (animate)
         {
-            StartCoroutine(FadeToRed(left));
-            movingLeft = true;
-        }
-        if (actionName == "Right")
-        {
-            StartCoroutine(FadeToRed(right));
-            movingLeft = false;
-        }
-        if (actionName == "Jump")
-        {
-            StartCoroutine(FadeToRed(up));
-            StartCoroutine(FadeToGreen(up));
-        }
-        if (actionName == "Dropped mine")
-        {
-            StartCoroutine(FadeToRed(mine));
-            if (minesLeft == 0)
+            if (actionName == "Left")
             {
-                StartCoroutine(FadeToGrey(mine));
+                StartCoroutine(FadeToRed(left));
             }
-            else
+            if (actionName == "Right")
             {
-                StartCoroutine(FadeToGreen(mine));
+                StartCoroutine(FadeToRed(right));
             }
-        }
-        if (actionName == "Stop")
-        {
-            if (movingLeft)
+            if (actionName == "Jump")
+            {
+                StartCoroutine(FadeToRed(up));
+                StartCoroutine(FadeToGreen(up));
+            }
+            if (actionName == "Dropped mine")
+            {
+                StartCoroutine(FadeToRed(mine));
+                if (this.gameObject.GetComponent<PlayerMovement>().mines == 0)
+                {
+                    StartCoroutine(FadeToGrey(mine));
+                }
+                else
+                {
+                    StartCoroutine(FadeToGreen(mine));
+                }
+            }
+            if (actionName == "Stop left")
             {
                 StartCoroutine(FadeToGreen(left));
             }
-            else
+            if (actionName == "Stop right")
             {
                 StartCoroutine(FadeToGreen(right));
             }
         }
+       
     }
 
     IEnumerator FadeToGrey(SpriteRenderer rd)
     {
+        yield return new WaitForSeconds(0.3f);
         // loop over 1 second backwards
         for (float i = 1; i >= 0; i -= Time.deltaTime)
         {
             // set color with i as alpha
-            rd.color = Color.Lerp(pressed, disabled, i);
+            rd.color = Color.Lerp(rd.color, disabled, i);
             yield return null;
         }
     }
@@ -98,6 +97,7 @@ public class InputFeedback : MonoBehaviour
     }
     IEnumerator FadeToGreen(SpriteRenderer rd)
     {
+        yield return new WaitForSeconds(0.5f);
         for (float i = 1; i >= 0; i -= Time.deltaTime)
         {
             // set color with i as alpha
