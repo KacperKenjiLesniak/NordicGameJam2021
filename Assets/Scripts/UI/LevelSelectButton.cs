@@ -27,7 +27,7 @@ namespace UI
             else
             {
                 var currentColor = GetComponent<Image>().color;
-                GetComponent<Image>().color = new Color(currentColor.r, currentColor.g, currentColor.b, 0.5f);
+                GetComponent<Image>().color = new Color(currentColor.r, currentColor.g, currentColor.b, 0.3f);
 
             }
         }

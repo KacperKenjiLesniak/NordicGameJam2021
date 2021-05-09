@@ -1,13 +1,14 @@
-﻿using MutableObjects.Float;
+﻿using System;
+using MutableObjects.Float;
 using Recorder;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
-    public class RecordingCountdownUI : MonoBehaviour
+    public class RecordingTextUI : MonoBehaviour
     {
-        public MutableFloat currentRecordingTime;
         public TMP_Text countdownText;
         public Countdown countdown;
 
@@ -15,7 +16,6 @@ namespace UI
         {
             countdown = FindObjectOfType<Countdown>();
             countdownText = GetComponent<TMP_Text>();
-
         }
 
         private void Update()
@@ -25,13 +25,13 @@ namespace UI
                 switch(countdown.recordingState)
                 {
                     case RecordingState.RECORDING:
-                        countdownText.text =  Mathf.CeilToInt(10 - currentRecordingTime.Value).ToString();
+                        countdownText.text = "Recording...";
                         break;
                     case RecordingState.BREAK:
                         countdownText.text = "";
                         break;
                     case RecordingState.PLAYING:
-                        countdownText.text =  Mathf.CeilToInt(10 - currentRecordingTime.Value).ToString();
+                        countdownText.text = "";
                         break;
                 }
 
