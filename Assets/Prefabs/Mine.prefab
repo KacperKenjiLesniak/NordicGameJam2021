@@ -183,11 +183,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActivated: 0
   isPlaced: 0
-  explosionPower: 200
-  explosionRadius: 100
+  explosionPower: 100
+  explosionRadius: 10
   uplift: 50
   Lives: 1
-  players: 1
+  players: 2
 --- !u!212 &5674081571469618351
 SpriteRenderer:
   m_ObjectHideFlags: 0
