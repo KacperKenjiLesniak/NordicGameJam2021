@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4569276527489264804, guid: fcb1a111e4ad6f442b829802fd54b113, type: 3}
       propertyPath: m_Name
-      value: Ground8
+      value: Ground8 Verticle Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcb1a111e4ad6f442b829802fd54b113, type: 3}
