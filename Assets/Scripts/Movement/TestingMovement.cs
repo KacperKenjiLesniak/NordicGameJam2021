@@ -9,7 +9,6 @@ public class TestingMovement : MonoBehaviour
     [SerializeField] private float speed, jumpingSpeed,boostSpeed, distToGround;
     [SerializeField] private int mines, boosts;
     [SerializeField] GameObject mine;
-    private InputFeedback inputFeedback;
     private Rigidbody2D playerRB;
     private Animator animator;
     private float movementTimer, lastMovementTime, timeLeftBoost;
@@ -17,7 +16,6 @@ public class TestingMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inputFeedback = GetComponent<InputFeedback>();
         playerRB = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
     }
@@ -27,37 +25,31 @@ public class TestingMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(upKey))
         {
-            inputFeedback.ShowFeedback("Jump");
             Jump();
         }
 
         if (Input.GetKeyDown(leftKey))
         {
-            inputFeedback.ShowFeedback("Left");
             MoveLeft();
         }
 
         if (Input.GetKeyDown(rightKey))
         {
-            inputFeedback.ShowFeedback("Right");
             MoveRight();
         }
 
         if (Input.GetKeyUp(leftKey))
         {
-            inputFeedback.ShowFeedback("Stop left");
             StopMovement();
         }
 
         if (Input.GetKeyUp(rightKey))
         {
-            inputFeedback.ShowFeedback("Stop right");
             StopMovement();
         }
 
         if (Input.GetKeyDown(weaponKey))
         {
-            inputFeedback.ShowFeedback("Dropped mine");
             ImplementWeapon();
         }
 
