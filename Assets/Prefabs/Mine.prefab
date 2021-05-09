@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6410561870728186928}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1698, y: -0.0917, z: 0}
   m_LocalScale: {x: 0.53716195, y: 0.11803508, z: 1}
   m_Children:
@@ -183,9 +183,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActivated: 0
   isPlaced: 0
-  explosionPower: 100
-  explosionRadius: 10
-  uplift: 50
+  explosionPower: 300
+  explosionRadius: 50
+  uplift: 10
   Lives: 1
   players: 2
 --- !u!212 &5674081571469618351
