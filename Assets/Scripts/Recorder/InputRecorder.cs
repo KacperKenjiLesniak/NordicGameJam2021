@@ -15,7 +15,8 @@ public class InputRecorder : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private AudioManager audioManager;
-
+    public bool musicActive = true;
+    
     private void Awake()
     {
         countdown = FindObjectOfType<Countdown>();
@@ -40,7 +41,7 @@ public class InputRecorder : MonoBehaviour
             {
                 case InputType.JUMP:
                     playerMovement.Jump();
-                    audioManager.PlayClip(2);
+                    if (musicActive) audioManager.PlayClip(2);
                     break;
                 case InputType.RUN_LEFT_START:
                     playerMovement.MoveLeft();
@@ -74,7 +75,7 @@ public class InputRecorder : MonoBehaviour
             Debug.Log("Enqueued " + input);
             if (input == InputType.JUMP)
             {
-                audioManager.PlayClip(2);
+                if (musicActive) audioManager.PlayClip(2);
             }
             inputQueue.Enqueue(new TimedInput(currentRecordingTime.Value, input));
         }

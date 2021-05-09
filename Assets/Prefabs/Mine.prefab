@@ -183,11 +183,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActivated: 0
   isPlaced: 0
-  explosionPower: 300
-  explosionRadius: 50
+  explosionPower: 600
+  explosionRadius: 20
   uplift: 10
   Lives: 1
   players: 2
+  effect: {fileID: 3450729324962875654, guid: e2980634672e7724b83e910fc4d332ae, type: 3}
 --- !u!212 &5674081571469618351
 SpriteRenderer:
   m_ObjectHideFlags: 0

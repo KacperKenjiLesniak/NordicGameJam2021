@@ -10,8 +10,11 @@ public class Minefield : MonoBehaviour
     private Rigidbody2D[] minesRb;
     [SerializeField] private float explosionPower, explosionRadius, uplift;
     [SerializeField] private int Lives,players;
+    [SerializeField] private GameObject effect;
 
 
+    private GameObject mineEffect;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +61,8 @@ public class Minefield : MonoBehaviour
     {
         mines = GameObject.FindGameObjectsWithTag("minebody");
         Vector3 explosionCore = new Vector3(transform.position.x, transform.position.y - 0.5f);
+        mineEffect = Instantiate(effect, transform.position, Quaternion.identity);
+        Invoke(nameof(DestroyParticle), 3f);
         Rigidbody2DExtension.AddExplosionForce(player1Rb, explosionPower, explosionCore, explosionRadius, uplift);
         if (players == 2)
         {
@@ -69,6 +74,11 @@ public class Minefield : MonoBehaviour
             Rigidbody2DExtension.AddExplosionForce(r, explosionPower, explosionCore, explosionRadius, uplift);
         }
         checkLives();
+    }
+
+    void DestroyParticle()
+    {
+        Destroy(mineEffect);
     }
 
     void checkLives()

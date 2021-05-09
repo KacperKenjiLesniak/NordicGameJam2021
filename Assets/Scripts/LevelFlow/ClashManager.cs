@@ -18,6 +18,8 @@ namespace LevelFlow
         private Countdown countdown;
         private MatchManager matchManager;
         private AudioManager audioManager;
+        public MutableInt player1RoundsWon;
+        public MutableInt player2RoundsWon;
 
         private void Awake()
         {
@@ -39,6 +41,7 @@ namespace LevelFlow
             {
                 if (playerScores[0].Value >= maxPoints && playerScores[0].Value > playerScores[1].Value)
                 {
+                    player1RoundsWon.Value += 1;
                     playerScores[0].Value = 0;
                     playerScores[1].Value = 0;
                     matchManager.NextLevel();
@@ -46,6 +49,7 @@ namespace LevelFlow
 
                 if (playerScores[1].Value >= maxPoints && playerScores[1].Value > playerScores[0].Value)
                 {
+                    player2RoundsWon.Value += 1;
                     playerScores[0].Value = 0;
                     playerScores[1].Value = 0;
                     matchManager.NextLevel();

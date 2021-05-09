@@ -509,11 +509,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpingSpeed: 10
+  jumpingSpeed: 13
   distToGround: 1
   boostSpeed: 0
-  mines: 0
   boosts: 0
+  mines: 0
   mine: {fileID: 6410561870728186928, guid: 965f6ea0c1c94cc4e8fbe1a98dba7ddd, type: 3}
 --- !u!50 &6245785087625575722
 Rigidbody2D:
@@ -589,9 +589,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f39bd342b5fe4a44833e652690e841c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAction: {fileID: 2375077400797685691}
-  lastAction: {fileID: 8886453826671073354}
-  thirdAction: {fileID: 4102908179282499698}
+  up: {fileID: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  mine: {fileID: 0}
+  normal: {r: 0, g: 0, b: 0, a: 0}
+  pressed: {r: 0, g: 0, b: 0, a: 0}
+  disabled: {r: 0, g: 0, b: 0, a: 0}
   countdown: {fileID: 0}
 --- !u!114 &8496506745431195229
 MonoBehaviour:
