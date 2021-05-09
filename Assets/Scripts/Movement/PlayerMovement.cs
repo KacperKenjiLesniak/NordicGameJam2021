@@ -61,9 +61,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        Debug.Log("Jumping!");
         if (IsGrounded())
         {
+            Debug.Log("Jumping!");
             playerRB.velocity = new Vector2(playerRB.velocity.x,jumpingSpeed);
             animator.SetTrigger("Jump");
         }
@@ -71,11 +71,14 @@ public class PlayerMovement : MonoBehaviour
 
     bool IsGrounded()
     {
-        RaycastHit2D hit =  Physics2D.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
-        if (hit.collider != null && (hit.collider.gameObject.CompareTag("Killer") || hit.collider.gameObject.CompareTag("mine"))) return false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
+        if (hit.collider != null && 
+            (hit.collider.gameObject.CompareTag("Killer") ||
+             hit.collider.gameObject.CompareTag("mine") ||
+             hit.collider.gameObject.CompareTag("Player1") ||
+             hit.collider.gameObject.CompareTag("Player2"))) return false;
         return hit;
     }
-    
 
     public void Move(float currentSpeed)
     {
