@@ -183,8 +183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActivated: 0
   isPlaced: 0
-  explosionPower: 300
-  explosionRadius: 50
+  explosionPower: 600
+  explosionRadius: 20
   uplift: 10
   Lives: 1
   players: 2
