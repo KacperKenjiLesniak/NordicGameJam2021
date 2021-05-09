@@ -29,13 +29,9 @@ namespace DefaultNamespace.LevelSelect
         public void NextLevel()
         {
             
-            if (player1RoundsWon.Value == 3)
+            if (player1RoundsWon.Value == 2 || player2RoundsWon.Value == 2)
             {
-                //player 1 won
-            }
-            else if (player2RoundsWon.Value == 3)
-            {
-                //player 2 won
+                SceneManager.LoadSceneAsync("GameScene");
             }
             else
             {
