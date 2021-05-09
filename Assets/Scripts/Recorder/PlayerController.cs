@@ -31,7 +31,7 @@ namespace Recorder
 
             if (Input.GetKeyDown(rightKey))
             {
-                inputFeedback.ShowFeedback("right");
+                inputFeedback.ShowFeedback("Right");
                 inputRecorder.AddInput(InputType.RUN_RIGHT_START);
             }
 

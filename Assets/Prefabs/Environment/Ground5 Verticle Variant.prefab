@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4811811971072434954, guid: 3d661427d5b72e940b2080b3d19d7abc, type: 3}
       propertyPath: m_Name
-      value: Ground5
+      value: Ground5 Verticle Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7906388494940350985, guid: 3d661427d5b72e940b2080b3d19d7abc, type: 3}
       propertyPath: m_RootOrder
