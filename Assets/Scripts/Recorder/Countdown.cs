@@ -19,9 +19,12 @@ namespace Recorder
         public MutableFloat currentRecordingTime;
         public MutableInt playersAlive;
 
+        private InputRecorder[] inputRecorders;
+        
         private void Start()
         {
             playersAlive.Value = FindObjectsOfType<PlayerMovement>().Length;
+            inputRecorders = FindObjectsOfType<InputRecorder>();
         }
 
         void Update()
@@ -67,6 +70,10 @@ namespace Recorder
             if (playersAlive.Value == 0)
             {
                 currentRecordingTime.Value = recordingLength;
+                foreach (var inputRecorder in inputRecorders)
+                {
+                    inputRecorder.ClearInputQueue();
+                }
             }
 
             if (currentRecordingTime.Value >= recordingLength)

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CurrentLevel
   m_EditorClassIdentifier: 
   resetType: 0
-  value: 4
+  value: 0
