@@ -37,13 +37,13 @@ namespace Recorder
 
             if(Input.GetKeyUp(leftKey))
             {
-                inputFeedback.ShowFeedback("Stop");
+                inputFeedback.ShowFeedback("Stop left");
                 inputRecorder.AddInput(InputType.RUN_LEFT_STOP);
             }
 
             if(Input.GetKeyUp(rightKey))
             {
-                inputFeedback.ShowFeedback("Stop");
+                inputFeedback.ShowFeedback("Stop right");
                 inputRecorder.AddInput(InputType.RUN_RIGHT_STOP);
             }
 
