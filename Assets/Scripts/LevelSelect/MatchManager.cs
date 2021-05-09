@@ -32,11 +32,11 @@ namespace DefaultNamespace.LevelSelect
 
             if (currentRound == 2)
             {
-                SceneManager.LoadSceneAsync("GameScene");
+                SceneManager.LoadSceneAsync("WinScene");
             }
             if (player1RoundsWon.Value >= 2 || player2RoundsWon.Value >= 2)
             {
-                SceneManager.LoadSceneAsync("GameScene");
+                SceneManager.LoadSceneAsync("WinScene");
             }
             else
             {
