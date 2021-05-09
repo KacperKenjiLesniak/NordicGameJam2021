@@ -509,8 +509,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpingSpeed: 5
-  distToGround: 2
+  jumpingSpeed: 10
+  distToGround: 1
   boostSpeed: 0
   mines: 0
   boosts: 0
@@ -528,14 +528,14 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_LinearDrag: 0.1
+  m_AngularDrag: 0.4
+  m_GravityScale: 1.5
+  m_Material: {fileID: 6200000, guid: 501482fefdacaf8429c6a5da400e447e, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6245785087625575764
 BoxCollider2D:
   m_ObjectHideFlags: 0
