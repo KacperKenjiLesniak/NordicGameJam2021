@@ -24,6 +24,7 @@ namespace DefaultNamespace.Movement
                 Instantiate(bloodSplash, transform.position, Quaternion.identity);
                 GetComponent<Collider2D>().enabled = false;
                 GetComponent<SpriteRenderer>().enabled = false;
+                GetComponent<InputRecorder>().musicActive = false;
             }
         }
     }

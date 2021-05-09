@@ -31,6 +31,7 @@ namespace DefaultNamespace.Movement
             GetComponent<PlayerMovement>().StopMovement();
             GetComponent<Collider2D>().enabled = true;
             GetComponent<SpriteRenderer>().enabled = true;
+            GetComponent<InputRecorder>().musicActive = true;
         }
     }
 }
