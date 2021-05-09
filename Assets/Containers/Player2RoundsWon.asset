@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb4c1ad19b56486ca2a4e9514f8b7acc, type: 3}
-  m_Name: CurrentLevel
+  m_Name: Player2RoundsWon
   m_EditorClassIdentifier: 
   resetType: 0
   value: 0

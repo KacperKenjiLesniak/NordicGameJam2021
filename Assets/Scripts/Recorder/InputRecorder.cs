@@ -67,13 +67,20 @@ public class InputRecorder : MonoBehaviour
     {
         if (countdown.recordingState == RecordingState.RECORDING)
         {
+            Debug.Log("Enqueued " + input);
             inputQueue.Enqueue(new TimedInput(currentRecordingTime.Value, input));
         }
         else if (countdown.recordingState == RecordingState.BREAK &&
                  (input == InputType.RUN_LEFT_START || input == InputType.RUN_RIGHT_START))
         {
             inputQueue.Clear();
+            Debug.Log("Enqueued during break " + input);
             inputQueue.Enqueue(new TimedInput(0f, input));
         }
+    }
+
+    public void ClearInputQueue()
+    {
+        inputQueue.Clear();
     }
 }

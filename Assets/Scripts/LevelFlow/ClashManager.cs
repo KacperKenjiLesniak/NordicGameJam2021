@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DefaultNamespace.LevelSelect;
 using MutableObjects.Int;
 using Recorder;
 using UnityEngine;
@@ -8,40 +9,46 @@ namespace LevelFlow
 {
     public class ClashManager : MonoBehaviour
     {
-        public int[] playerPoints = {0, 0};
+        public MutableInt[] playerScores;
         public int maxPoints;
         public MutableInt currentLevel;
         public GameObject[] levels;
         
         private Countdown countdown;
-
+        private MatchManager matchManager;
+        
         private void Awake()
         {
             countdown = FindObjectOfType<Countdown>();
+            matchManager = FindObjectOfType<MatchManager>();
         }
 
         private void Start()
         {
+            Debug.Log("Instantiating environment number: " + currentLevel.Value);
+
             Array.ForEach(levels, level => level.SetActive(false));
             levels[currentLevel.Value].SetActive(true);
         }
 
-        public void AddPoint(int amount, int player)
-        {
-            playerPoints[player] += amount;
-        }
-
         private void Update()
         {
-            if (playerPoints[0] > maxPoints && playerPoints[0] > playerPoints[1])
+            if (countdown.recordingState == RecordingState.BREAK)
             {
-                countdown.enabled = false;
-            } 
-            
-            if (playerPoints[1] > maxPoints && playerPoints[1] > playerPoints[0])
-            {
-                countdown.enabled = false;
-            } 
+                if (playerScores[0].Value >= maxPoints && playerScores[0].Value > playerScores[1].Value)
+                {
+                    playerScores[0].Value = 0;
+                    playerScores[1].Value = 0;
+                    matchManager.NextLevel();
+                }
+
+                if (playerScores[1].Value >= maxPoints && playerScores[1].Value > playerScores[0].Value)
+                {
+                    playerScores[0].Value = 0;
+                    playerScores[1].Value = 0;
+                    matchManager.NextLevel();
+                }
+            }
         }
     }
 }
